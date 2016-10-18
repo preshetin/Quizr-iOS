@@ -13,6 +13,9 @@
 		2E0550441D6CD41E0051C24D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0550421D6CD41E0051C24D /* Main.storyboard */; };
 		2E0550461D6CD41E0051C24D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E0550451D6CD41E0051C24D /* Assets.xcassets */; };
 		2E0550491D6CD41E0051C24D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0550471D6CD41E0051C24D /* LaunchScreen.storyboard */; };
+		2E103A1B1DB4F5E60012B3FB /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */; };
+		2E272D5C1D7DD02300046630 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E272D5B1D7DD02300046630 /* Topic.swift */; };
+		2E272D5E1D7DD56700046630 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E272D5D1D7DD56700046630 /* QuestionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		2E0550451D6CD41E0051C24D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E0550481D6CD41E0051C24D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E05504A1D6CD41E0051C24D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
+		2E272D5B1D7DD02300046630 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		2E272D5D1D7DD56700046630 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,26 @@
 		2E05503B1D6CD41E0051C24D /* Quizr */ = {
 			isa = PBXGroup;
 			children = (
+				2E272D5A1D7DCFA700046630 /* Models */,
 				2E05503C1D6CD41E0051C24D /* AppDelegate.swift */,
 				2E05503E1D6CD41E0051C24D /* FirstViewController.swift */,
 				2E0550401D6CD41E0051C24D /* SecondViewController.swift */,
 				2E0550421D6CD41E0051C24D /* Main.storyboard */,
+				2E272D5D1D7DD56700046630 /* QuestionViewController.swift */,
+				2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */,
 				2E0550451D6CD41E0051C24D /* Assets.xcassets */,
 				2E0550471D6CD41E0051C24D /* LaunchScreen.storyboard */,
 				2E05504A1D6CD41E0051C24D /* Info.plist */,
 			);
 			path = Quizr;
+			sourceTree = "<group>";
+		};
+		2E272D5A1D7DCFA700046630 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E272D5B1D7DD02300046630 /* Topic.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +117,7 @@
 					2E0550381D6CD41E0051C24D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = FVTU3U5H6P;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -140,6 +158,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E0550411D6CD41E0051C24D /* SecondViewController.swift in Sources */,
+				2E103A1B1DB4F5E60012B3FB /* TopicTableViewCell.swift in Sources */,
+				2E272D5E1D7DD56700046630 /* QuestionViewController.swift in Sources */,
+				2E272D5C1D7DD02300046630 /* Topic.swift in Sources */,
 				2E05503D1D6CD41E0051C24D /* AppDelegate.swift in Sources */,
 				2E05503F1D6CD41E0051C24D /* FirstViewController.swift in Sources */,
 			);
@@ -260,6 +281,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petrreshetin.Quizr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -271,6 +293,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petrreshetin.Quizr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -293,6 +316,7 @@
 				2E05504F1D6CD41E0051C24D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
