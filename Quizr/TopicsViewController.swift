@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class TopicsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     let topics = ["Рекламные кампании", "Код отслеживания", "Цели и конверсии", "Метрики и параметры"]
     let descriptions = [
@@ -26,17 +26,18 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         return topics.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 100.0;//Choose your custom row height
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cellaa", for: indexPath) as! TopicTableViewCell
+        cell.nameLabel.text = topics[(indexPath as NSIndexPath).row]
+        cell.descriptionLabel.text = descriptions[(indexPath as NSIndexPath).row]
+//        cell.selectionStyle = .none
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Cellaa", for: indexPath)
-                cell.textLabel?.text = topics[(indexPath as NSIndexPath).row]
-                cell.detailTextLabel?.font = cell.textLabel?.font.withSize(25)
-                cell.detailTextLabel?.text = descriptions[(indexPath as NSIndexPath).row]
-                return cell
+    override func viewDidAppear(_ animated: Bool) {
+        if let indexPath = topicsTable.indexPathForSelectedRow {
+            self.topicsTable.deselectRow(at: indexPath, animated: false)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,7 +56,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        topicsTable.rowHeight = UITableViewAutomaticDimension
+        topicsTable.estimatedRowHeight = 100
     }
 
     override func didReceiveMemoryWarning() {
