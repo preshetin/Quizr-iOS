@@ -14,23 +14,44 @@ class QuestionViewController: UIViewController {
     var selectedVariant: Variant? = nil
     var topicName: String?
     
+    // MARK - IBOutlets
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var variantsStackView: UIStackView!
+    @IBOutlet weak var resultImageView: UIImageView!
+    
+    // MARK - IBActions
+    
+    @IBAction func applyQuestion(_ sender: UIButton) {
+        switch selectedVariant {
+        case .none:
+            print("Please choose variant")
+        case .some(let variant):
+            sender.isHidden = true
+            variantsStackView.isUserInteractionEnabled = false
+            switch variant.isCorrect {
+            case true:
+                resultImageView.image = UIImage(named: "ok")
+            case false:
+                resultImageView.image = UIImage(named: "not-ok")
+            }
+            UIView.animate(withDuration: 0.2, animations: {
+                self.resultImageView.isHidden = false
+                self.resultImageView.alpha = 1
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.2, delay: 0.8, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                        self.resultImageView.alpha = 0
+                        }, completion: nil)
+            })
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         questionLabel.text = question.description
         createVariantLabels()
         self.title = topicName
-    }
-    
-    @IBAction func applyQuestion() {
-        switch selectedVariant {
-        case .none:
-            print("Please choose variant")
-        case .some(let variant):
-            print("\(variant.isCorrect)")
-        }
+        resultImageView.alpha = 0
     }
     
     func variantTapped(_ gestureRegognizer: UIGestureRecognizer) {

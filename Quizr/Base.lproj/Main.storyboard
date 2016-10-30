@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="383" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tBv-0f-IUO" id="fbo-pk-whw">
-                                            <frame key="frameInset" width="383" height="99"/>
+                                            <frame key="frameInset" width="383" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAg-My-yaF">
@@ -202,31 +202,41 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="applyQuestion" destination="ylF-H0-ZZL" eventType="touchUpInside" id="t3U-Pm-KQh"/>
+                                            <action selector="applyQuestion:" destination="ylF-H0-ZZL" eventType="touchUpInside" id="a7u-Ks-nV9"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ok.png" translatesAutoresizingMaskIntoConstraints="NO" id="JhU-jn-Ijw">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="UI8-RM-dNp"/>
+                                    <constraint firstAttribute="height" constant="200" id="mEH-Sp-YZe"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6RU-p7-SbA" firstAttribute="top" secondItem="HWe-JY-a4E" secondAttribute="topMargin" constant="72" id="2Vr-6z-d9W"/>
+                            <constraint firstItem="JhU-jn-Ijw" firstAttribute="centerX" secondItem="HWe-JY-a4E" secondAttribute="centerX" id="3oz-6r-KfZ"/>
+                            <constraint firstItem="JhU-jn-Ijw" firstAttribute="centerY" secondItem="HWe-JY-a4E" secondAttribute="centerY" id="6vV-5r-H8T"/>
                             <constraint firstItem="6RU-p7-SbA" firstAttribute="leading" secondItem="HWe-JY-a4E" secondAttribute="leadingMargin" id="xmJ-71-fOB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6RU-p7-SbA" secondAttribute="trailing" id="yoU-KM-MBA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="questionLabel" destination="t22-at-205" id="alr-1p-egn"/>
+                        <outlet property="resultImageView" destination="JhU-jn-Ijw" id="q7d-Wc-Tcb"/>
                         <outlet property="variantsStackView" destination="13C-xg-pcH" id="BeA-Bn-Oen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3S-tb-oa9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614" y="-322"/>
+            <point key="canvasLocation" x="2613.5999999999999" y="-322.48875562218893"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="ok.png" width="1000" height="1000"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
