@@ -10,19 +10,22 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
-    let question = Question.questionsFromBundle()[1]
+    // MARK - Constants and variables
+    
+    var questionId = 0
     var selectedVariant: Variant? = nil
     var topicName: String?
     
     // MARK - IBOutlets
     
+    @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var variantsStackView: UIStackView!
     @IBOutlet weak var resultImageView: UIImageView!
     
     // MARK - IBActions
     
-    @IBAction func applyQuestion(_ sender: UIButton) {
+    @IBAction func answer(_ sender: UIButton) {
         switch selectedVariant {
         case .none:
             print("Please choose variant")
@@ -46,10 +49,16 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    @IBAction func next() {
+        questionId += 1
+        prepareQuestion(withId: questionId)
+    }
+    
+    // MARK - Other
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = question.description
-        createVariantLabels()
+        prepareQuestion(withId: questionId)
         self.title = topicName
         resultImageView.alpha = 0
     }
@@ -62,6 +71,7 @@ class QuestionViewController: UIViewController {
             selectedVariant = nil
         case "#e5e5e5":
             label.backgroundColor = UIColor.yellow
+            let question = Question.questionsFromBundle()[questionId]
             selectedVariant = question.findVariantByText(text: label.text!)
         default:
             break
@@ -75,7 +85,19 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    // MARK - Private
+    
+    private func prepareQuestion(withId id: Int) {
+        let question = Question.questionsFromBundle()[id]
+        questionLabel.text = question.description
+        createVariantLabels()
+        variantsStackView.isUserInteractionEnabled = true
+        answerButton.isHidden = false
+    }
+    
     private func createVariantLabels() {
+        let question = Question.questionsFromBundle()[questionId]
+        variantsStackView.removeAllSubviews()
         for variantAnswer in question.variants {
             let variantLabel = UILabel()
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(QuestionViewController.variantTapped(_:)))
@@ -88,6 +110,14 @@ class QuestionViewController: UIViewController {
         }
     }
     
+}
+
+extension UIStackView {
+    func removeAllSubviews() {
+        for subview in self.subviews {
+            self.removeArrangedSubview(subview)
+        }
+    }
 }
 
 extension UIColor {
