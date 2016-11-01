@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class QuestionViewController: UIViewController {
     
@@ -90,6 +91,8 @@ class QuestionViewController: UIViewController {
         prepareQuestion(withId: questionId)
         self.title = topicName
         resultImageView.alpha = 0
+        
+        storeReply(questionId: 4, isCorrect: true)
     }
     
     // MARK - Private
@@ -126,6 +129,34 @@ class QuestionViewController: UIViewController {
             variantLabel.backgroundColor = UIColor(white: 0.9, alpha: 1)
             variantsStackView.addArrangedSubview(variantLabel)
         }
+    }
+    
+    func storeReply(questionId: NSNumber, isCorrect: Bool) {
+        let context = getContext()
+        
+        //retrieve the entity that we just created
+        let entity =  NSEntityDescription.entity(forEntityName: "Reply", in: context)
+        
+        let reply = NSManagedObject(entity: entity!, insertInto: context)
+        
+        //set the entity values
+        reply.setValue(questionId, forKey: "questionId")
+        reply.setValue(isCorrect, forKey: "isCorrect")
+        
+        //save the object
+        do {
+            try context.save()
+            print("saved!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        } catch {
+            
+        }
+    }
+    
+    func getContext () -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
     }
     
 }

@@ -16,6 +16,9 @@
 		2E103A1B1DB4F5E60012B3FB /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */; };
 		2E272D5C1D7DD02300046630 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E272D5B1D7DD02300046630 /* Topic.swift */; };
 		2E272D5E1D7DD56700046630 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E272D5D1D7DD56700046630 /* QuestionViewController.swift */; };
+		2E30C8C51DC8981F0045C8EB /* Quizr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E30C8C31DC8981F0045C8EB /* Quizr.xcdatamodeld */; };
+		2E30C8E91DC8AE8D0045C8EB /* Reply+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E30C8E71DC8AE8D0045C8EB /* Reply+CoreDataClass.swift */; };
+		2E30C8EA1DC8AE8D0045C8EB /* Reply+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E30C8E81DC8AE8D0045C8EB /* Reply+CoreDataProperties.swift */; };
 		2E5B53D11DC5EC4F0085633A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B53CF1DC5EC4F0085633A /* Question.swift */; };
 		2E5B53D21DC5EC4F0085633A /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B53D01DC5EC4F0085633A /* Variant.swift */; };
 		2E5B53D51DC5ECE00085633A /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E5B53D41DC5ECE00085633A /* questions.json */; };
@@ -36,6 +39,9 @@
 		2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
 		2E272D5B1D7DD02300046630 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		2E272D5D1D7DD56700046630 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		2E30C8C41DC8981F0045C8EB /* Quizr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Quizr.xcdatamodel; sourceTree = "<group>"; };
+		2E30C8E71DC8AE8D0045C8EB /* Reply+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Reply+CoreDataClass.swift"; path = "../Reply+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2E30C8E81DC8AE8D0045C8EB /* Reply+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Reply+CoreDataProperties.swift"; path = "../Reply+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2E5B53CF1DC5EC4F0085633A /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		2E5B53D01DC5EC4F0085633A /* Variant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
 		2E5B53D41DC5ECE00085633A /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = "<group>"; };
@@ -82,6 +88,7 @@
 				2E0550401D6CD41E0051C24D /* SecondViewController.swift */,
 				2E0550421D6CD41E0051C24D /* Main.storyboard */,
 				2E272D5D1D7DD56700046630 /* QuestionViewController.swift */,
+				2E30C8C31DC8981F0045C8EB /* Quizr.xcdatamodeld */,
 				2E103A1A1DB4F5E60012B3FB /* TopicTableViewCell.swift */,
 			);
 			path = Quizr;
@@ -90,6 +97,8 @@
 		2E272D5A1D7DCFA700046630 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2E30C8E71DC8AE8D0045C8EB /* Reply+CoreDataClass.swift */,
+				2E30C8E81DC8AE8D0045C8EB /* Reply+CoreDataProperties.swift */,
 				2E5B53CF1DC5EC4F0085633A /* Question.swift */,
 				2E5B53D01DC5EC4F0085633A /* Variant.swift */,
 				2E272D5B1D7DD02300046630 /* Topic.swift */,
@@ -199,9 +208,12 @@
 				2E103A1B1DB4F5E60012B3FB /* TopicTableViewCell.swift in Sources */,
 				2E272D5E1D7DD56700046630 /* QuestionViewController.swift in Sources */,
 				2E272D5C1D7DD02300046630 /* Topic.swift in Sources */,
+				2E30C8EA1DC8AE8D0045C8EB /* Reply+CoreDataProperties.swift in Sources */,
 				2E05503D1D6CD41E0051C24D /* AppDelegate.swift in Sources */,
+				2E30C8C51DC8981F0045C8EB /* Quizr.xcdatamodeld in Sources */,
 				2E5B53D21DC5EC4F0085633A /* Variant.swift in Sources */,
 				2E5B53D11DC5EC4F0085633A /* Question.swift in Sources */,
+				2E30C8E91DC8AE8D0045C8EB /* Reply+CoreDataClass.swift in Sources */,
 				2E05503F1D6CD41E0051C24D /* TopicsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -305,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -359,6 +371,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2E30C8C31DC8981F0045C8EB /* Quizr.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2E30C8C41DC8981F0045C8EB /* Quizr.xcdatamodel */,
+			);
+			currentVersion = 2E30C8C41DC8981F0045C8EB /* Quizr.xcdatamodel */;
+			path = Quizr.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2E0550311D6CD41E0051C24D /* Project object */;
 }
