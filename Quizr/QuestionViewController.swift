@@ -10,20 +10,20 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
-    // MARK - Constants and variables
+    // MARK: Constants and variables
     
     var questionId = 0
     var selectedVariant: Variant? = nil
     var topicName: String?
     
-    // MARK - IBOutlets
+    // MARK: Interface Builder Outlets
     
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var variantsStackView: UIStackView!
     @IBOutlet weak var resultImageView: UIImageView!
     
-    // MARK - IBActions
+    // MARK: Interface Builder actions
     
     @IBAction func answer(_ sender: UIButton) {
         switch selectedVariant {
@@ -54,15 +54,6 @@ class QuestionViewController: UIViewController {
         prepareQuestion(withId: questionId)
     }
     
-    // MARK - Other
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        prepareQuestion(withId: questionId)
-        self.title = topicName
-        resultImageView.alpha = 0
-    }
-    
     func variantTapped(_ gestureRegognizer: UIGestureRecognizer) {
         let label = gestureRegognizer.view as! UILabel
         switch (label.backgroundColor?.htmlRGBColor)! {
@@ -83,6 +74,15 @@ class QuestionViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: UIViewController
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareQuestion(withId: questionId)
+        self.title = topicName
+        resultImageView.alpha = 0
     }
     
     // MARK - Private
