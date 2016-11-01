@@ -12,16 +12,19 @@ class QuestionViewController: UIViewController {
     
     // MARK: Constants and variables
     
-    var questionId = 0
+    var questionId = 1
     var selectedVariant: Variant? = nil
     var topicName: String?
     
     // MARK: Interface Builder Outlets
     
-    @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var variantsStackView: UIStackView!
     @IBOutlet weak var resultImageView: UIImageView!
+    
+    @IBOutlet weak var answerButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
     
     // MARK: Interface Builder actions
     
@@ -30,7 +33,6 @@ class QuestionViewController: UIViewController {
         case .none:
             print("Please choose variant")
         case .some(let variant):
-            sender.isHidden = true
             variantsStackView.isUserInteractionEnabled = false
             switch variant.isCorrect {
             case true:
@@ -47,11 +49,16 @@ class QuestionViewController: UIViewController {
                         }, completion: nil)
             })
         }
+        selectedVariant = nil
     }
     
     @IBAction func next() {
         questionId += 1
         prepareQuestion(withId: questionId)
+    }
+    
+    @IBAction func finish() {
+        self.performSegue(withIdentifier: "unwindToTopics", sender: self)
     }
     
     func variantTapped(_ gestureRegognizer: UIGestureRecognizer) {
@@ -62,7 +69,7 @@ class QuestionViewController: UIViewController {
             selectedVariant = nil
         case "#e5e5e5":
             label.backgroundColor = UIColor.yellow
-            let question = Question.questionsFromBundle()[questionId]
+            let question = Question.questionsFromBundle()[questionId - 1]
             selectedVariant = question.findVariantByText(text: label.text!)
         default:
             break
@@ -88,15 +95,26 @@ class QuestionViewController: UIViewController {
     // MARK - Private
     
     private func prepareQuestion(withId id: Int) {
-        let question = Question.questionsFromBundle()[id]
+        let question = Question.questionsFromBundle()[id - 1]
         questionLabel.text = question.description
         createVariantLabels()
         variantsStackView.isUserInteractionEnabled = true
+        prepareButtons()
+    }
+    
+    private func prepareButtons() {
         answerButton.isHidden = false
+        if questionId == Question.questionsFromBundle().count {
+            nextButton.isHidden = true
+            finishButton.isHidden = false
+        } else {
+            nextButton.isHidden = false
+            finishButton.isHidden = true
+        }
     }
     
     private func createVariantLabels() {
-        let question = Question.questionsFromBundle()[questionId]
+        let question = Question.questionsFromBundle()[questionId - 1]
         variantsStackView.removeAllSubviews()
         for variantAnswer in question.variants {
             let variantLabel = UILabel()

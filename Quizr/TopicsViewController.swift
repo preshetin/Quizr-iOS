@@ -21,6 +21,8 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var topicsTable: UITableView!
     
+    @IBAction func unwindToTopics(segue: UIStoryboardSegue) {}
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topics.count
@@ -54,6 +56,7 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         topicsTable.rowHeight = UITableViewAutomaticDimension
