@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SecondViewController: UIViewController {
+class ResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,20 +24,12 @@ class SecondViewController: UIViewController {
     
     
     func getReplies () {
-        //create a fetch request, telling it about the entity
         let fetchRequest: NSFetchRequest<Reply> = Reply.fetchRequest()
         
         do {
-            //go get the results
             let searchResults = try getContext().fetch(fetchRequest)
-            
-            //I like to check the size of the returned results!
-            print ("num of results = \(searchResults.count)")
-            
-            //You need to convert to NSManagedObject to use 'for' loops
-            for reply in searchResults as [NSManagedObject] {
-                //get the Key Value pairs (although there may be a better way to do that...
-                print("\(reply.value(forKey: "isCorrect"))")
+            for reply in searchResults {
+                print("\(reply.questionId), \(reply.isCorrect)")
             }
         } catch {
             print("Error with request: \(error)")

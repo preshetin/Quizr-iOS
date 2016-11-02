@@ -92,7 +92,7 @@ class QuestionViewController: UIViewController {
         self.title = topicName
         resultImageView.alpha = 0
         
-        storeReply(questionId: 4, isCorrect: true)
+        storeReply(questionId: 555, isCorrect: false)
     }
     
     // MARK - Private
@@ -134,24 +134,16 @@ class QuestionViewController: UIViewController {
     func storeReply(questionId: NSNumber, isCorrect: Bool) {
         let context = getContext()
         
-        //retrieve the entity that we just created
-        let entity =  NSEntityDescription.entity(forEntityName: "Reply", in: context)
+        let reply = Reply(context: context)
+        reply.questionId = Int32(questionId)
+        reply.isCorrect = isCorrect
         
-        let reply = NSManagedObject(entity: entity!, insertInto: context)
-        
-        //set the entity values
-        reply.setValue(questionId, forKey: "questionId")
-        reply.setValue(isCorrect, forKey: "isCorrect")
-        
-        //save the object
         do {
             try context.save()
             print("saved!")
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
-        } catch {
-            
-        }
+        } catch { }
     }
     
     func getContext () -> NSManagedObjectContext {
