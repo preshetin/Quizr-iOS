@@ -136,7 +136,7 @@ class QuestionViewController: UIViewController {
 extension UIStackView {
     func removeAllSubviews() {
         for subview in self.subviews {
-            self.removeArrangedSubview(subview)
+            subview.removeFromSuperview()
         }
     }
 }

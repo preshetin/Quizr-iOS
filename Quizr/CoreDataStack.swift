@@ -12,17 +12,16 @@ import Foundation
 
 class CoreDataStack {
 
-    static func getReplies () {
+    static func getReplies() -> [Reply]? {
         let fetchRequest: NSFetchRequest<Reply> = Reply.fetchRequest()
         
         do {
             let searchResults = try getContext().fetch(fetchRequest)
-            for reply in searchResults {
-                print("\(reply.questionId), \(reply.isCorrect)")
-            }
+            return searchResults
         } catch {
             print("Error with request: \(error)")
         }
+        return nil
     }
     
     static func storeReply(questionId: Int, isCorrect: Bool) {

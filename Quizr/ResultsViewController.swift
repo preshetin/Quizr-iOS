@@ -11,10 +11,22 @@ import CoreData
 
 class ResultsViewController: UIViewController {
 
+    @IBOutlet weak var replies: UILabel!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        replies.text = ""
+        if let replies = CoreDataStack.getReplies() {
+            for reply in replies {
+                self.replies.text! += "\(reply.questionId), \(reply.isCorrect)|"
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CoreDataStack.getReplies()
+        
     }
 
     override func didReceiveMemoryWarning() {
