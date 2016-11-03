@@ -14,32 +14,12 @@ class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getReplies()
+        CoreDataStack.getReplies()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    func getReplies () {
-        let fetchRequest: NSFetchRequest<Reply> = Reply.fetchRequest()
-        
-        do {
-            let searchResults = try getContext().fetch(fetchRequest)
-            for reply in searchResults {
-                print("\(reply.questionId), \(reply.isCorrect)")
-            }
-        } catch {
-            print("Error with request: \(error)")
-        }
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-
 }
 

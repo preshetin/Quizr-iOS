@@ -11,13 +11,13 @@ import CoreData
 
 class QuestionViewController: UIViewController {
     
-    // MARK: Constants and variables
+    // MARK: - Constants and variables
     
     var questionId = 1
     var selectedVariant: Variant? = nil
     var topicName: String?
     
-    // MARK: Interface Builder Outlets
+    // MARK: - Interface Builder Outlets
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var variantsStackView: UIStackView!
@@ -27,7 +27,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     
-    // MARK: Interface Builder actions
+    // MARK: - Interface Builder actions
     
     @IBAction func answer(_ sender: UIButton) {
         switch selectedVariant {
@@ -35,6 +35,7 @@ class QuestionViewController: UIViewController {
             print("Please choose variant")
         case .some(let variant):
             variantsStackView.isUserInteractionEnabled = false
+            CoreDataStack.storeReply(questionId: self.questionId, isCorrect: variant.isCorrect)
             switch variant.isCorrect {
             case true:
                 resultImageView.image = UIImage(named: "ok")
@@ -84,18 +85,16 @@ class QuestionViewController: UIViewController {
         }
     }
     
-    // MARK: UIViewController
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareQuestion(withId: questionId)
         self.title = topicName
         resultImageView.alpha = 0
-        
-        storeReply(questionId: 555, isCorrect: false)
     }
     
-    // MARK - Private
+    // MARK: - Private
     
     private func prepareQuestion(withId id: Int) {
         let question = Question.questionsFromBundle()[id - 1]
@@ -130,28 +129,9 @@ class QuestionViewController: UIViewController {
             variantsStackView.addArrangedSubview(variantLabel)
         }
     }
-    
-    func storeReply(questionId: NSNumber, isCorrect: Bool) {
-        let context = getContext()
-        
-        let reply = Reply(context: context)
-        reply.questionId = Int32(questionId)
-        reply.isCorrect = isCorrect
-        
-        do {
-            try context.save()
-            print("saved!")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        } catch { }
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
 }
+
+// MARK: - Extensions
 
 extension UIStackView {
     func removeAllSubviews() {
