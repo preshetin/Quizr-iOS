@@ -11,12 +11,14 @@ import CoreData
 
 class ResultsViewController: UIViewController {
 
+    let cds = CoreDataStack()
+    
     @IBOutlet weak var replies: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         replies.text = ""
-        if let replies = CoreDataStack.getReplies() {
+        if let replies = cds.getReplies() {
             for reply in replies {
                 self.replies.text! += "\(reply.questionId), \(reply.isCorrect)|"
             }

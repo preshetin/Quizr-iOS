@@ -7,33 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
-class TopicsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class TopicsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate  {
     
-    let topics = ["Рекламные кампании", "Код отслеживания", "Цели и конверсии", "Метрики и параметры"]
-    let descriptions = [
-        "Контекстная реклама, AdWords, пометка ссылок. Ответы на эти вопросы особенно важно знать специалистам по рекламе.",
-        "Что такое trackPageview? Зачем нужны виртуальные страницы? Эти и другие вопросы про стандартный код отслеживания и код отслеживания электронной торговли.",
-        "Что такое цель. Как назначать цель. Зачем назначать ценность цели. Отличия целей от транзакций. Зачем нужна визуализация последовательностей.",
-       "Отличия метрик от параметров. Показатель отказов, длительность посещений, CTR . Зачем нужны эти метрики, и как ими пользоваться. Чем отличаются клики от посещений."
+    // MARK: - Variables and constants
+    
+    let cds = CoreDataStack()
+    var managedObjectContext: NSManagedObjectContext? = nil
+    
+    // MARK: - IBOutlets
         
-    ]
-    
     @IBOutlet weak var topicsTable: UITableView!
-    
     @IBAction func unwindToTopics(segue: UIStoryboardSegue) {}
     
+    // MARK: - Table view
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.count
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cellaa", for: indexPath) as! TopicTableViewCell
-        cell.nameLabel.text = topics[(indexPath as NSIndexPath).row]
-        cell.descriptionLabel.text = descriptions[(indexPath as NSIndexPath).row]
+        let topic = self.fetchedResultsController.object(at: indexPath)
+        self.configureCell(cell, withTopic: topic)
 //        cell.selectionStyle = .none
         return cell
+    }
+    
+    func configureCell(_ cell: TopicTableViewCell, withTopic topic: Topic) {
+        cell.nameLabel.text = topic.name
+        cell.descriptionLabel.text = topic.summary
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,17 +55,17 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         if let index = sender as? IndexPath {
             if segue.identifier == "showTopicQuiz" {
                 if let vc = segue.destination as? QuestionViewController {
-                    vc.topicName = topics[(index as NSIndexPath).row]
+                    vc.topicName = self.fetchedResultsController.object(at: index).name
                 }
             }
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         topicsTable.rowHeight = UITableViewAutomaticDimension
         topicsTable.estimatedRowHeight = 100
+        let _ = cds.getTopics() // loads predifined topis
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +73,44 @@ class TopicsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Fetched results controller
+    
+    var fetchedResultsController: NSFetchedResultsController<Topic> {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
 
+        self.managedObjectContext = cds.getContext()
+        
+        let fetchRequest: NSFetchRequest<Topic> = Topic.fetchRequest()
+        
+        // Set the batch size to a suitable number.
+        fetchRequest.fetchBatchSize = 20
+        
+        // Edit the sort key as appropriate.
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: "Master")
+        aFetchedResultsController.delegate = self
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
+    }
+    var _fetchedResultsController: NSFetchedResultsController<Topic>? = nil
+    
 
 }
 

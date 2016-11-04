@@ -16,6 +16,7 @@ class QuestionViewController: UIViewController {
     var questionId = 1
     var selectedVariant: Variant? = nil
     var topicName: String?
+    let cds = CoreDataStack()
     
     // MARK: - Interface Builder Outlets
     
@@ -36,7 +37,7 @@ class QuestionViewController: UIViewController {
             print("Please choose variant")
         case .some(let variant):
             variantsStackView.isUserInteractionEnabled = false
-            CoreDataStack.storeReply(questionId: self.questionId, isCorrect: variant.isCorrect)
+            cds.storeReply(questionId: self.questionId, isCorrect: variant.isCorrect)
             switch variant.isCorrect {
             case true:
                 resultImageView.image = UIImage(named: "ok")
