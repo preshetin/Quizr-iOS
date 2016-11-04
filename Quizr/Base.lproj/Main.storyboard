@@ -193,7 +193,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="p0m-LS-ufl">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="160.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="171.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHP-wm-e1v">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
@@ -205,11 +205,12 @@
                                                 <rect key="frame" x="0.0" y="25.5" width="375" height="100"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="fxd-Ub-wmF" userLabel="Buttons Stack View">
-                                                <rect key="frame" x="0.0" y="130.5" width="375" height="30"/>
+                                                <rect key="frame" x="0.0" y="130.5" width="375" height="41"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-q3-hdT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="123" height="41"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <state key="normal" title="Answer">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -218,8 +219,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmC-WW-tUm">
-                                                        <rect key="frame" x="126" y="0.0" width="123" height="30"/>
+                                                        <rect key="frame" x="126" y="0.0" width="123" height="41"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <state key="normal" title="Next">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -228,8 +230,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PV5-rB-Re7">
-                                                        <rect key="frame" x="252" y="0.0" width="123" height="30"/>
+                                                        <rect key="frame" x="252" y="0.0" width="123" height="41"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <state key="normal" title="Finish">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -274,6 +277,7 @@
                         <outlet property="nextButton" destination="GmC-WW-tUm" id="blW-4C-gPO"/>
                         <outlet property="questionLabel" destination="FHP-wm-e1v" id="moL-PH-tjL"/>
                         <outlet property="resultImageView" destination="zuQ-CN-0Wz" id="E1a-aa-ohA"/>
+                        <outlet property="scrollView" destination="u1Y-XS-DO9" id="L62-4v-unb"/>
                         <outlet property="variantsStackView" destination="YfE-vt-yoS" id="U1R-2V-Hnz"/>
                         <segue destination="sHf-v7-6KO" kind="unwind" identifier="unwindToTopics" unwindAction="unwindToTopicsWithSegue:" id="9Dp-21-F0M"/>
                     </connections>

@@ -23,6 +23,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var variantsStackView: UIStackView!
     @IBOutlet weak var resultImageView: UIImageView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var answerButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
@@ -102,6 +103,7 @@ class QuestionViewController: UIViewController {
         createVariantLabels()
         variantsStackView.isUserInteractionEnabled = true
         prepareButtons()
+        scrollView.scrollToTop()
     }
     
     private func prepareButtons() {
@@ -138,6 +140,13 @@ extension UIStackView {
         for subview in self.subviews {
             subview.removeFromSuperview()
         }
+    }
+}
+
+extension UIScrollView {
+    func scrollToTop() {
+        let desiredOffset = CGPoint(x: 0, y: -contentInset.top)
+        setContentOffset(desiredOffset, animated: true)
     }
 }
 
